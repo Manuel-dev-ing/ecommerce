@@ -5,6 +5,7 @@ import envioslogotipo from '@/images/envioslogotipo.webp'
 import logotipo from '@/images/logo.png'
 
 import { login, register } from '@/routes'
+import ListCategories from './list-categories'
 
 type HeaderProps = {
     setIsHovering: Dispatch<boolean>
@@ -56,14 +57,14 @@ export default function Header({setIsHovering, isHovering}: HeaderProps) {
                     <ul className="text-xs font-normal flex items-center">
                      
                         <li>
-                            <a onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} href="#" className="flex items-center block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border">
+                            <a onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} href="#" className="flex items-center block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent">
                                 Categorias
                                 <ChevronDown size={21} strokeWidth={0.75} />
                             </a>
                             {isHovering && 
+                                <div onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter}>
+                                    <ListCategories />
 
-                                <div className="w-72 h-72 p-5 bg-[#333333] z-50 absolute rounded">
-                                    <p className='text-white'>Hola Mundo</p>
                                 </div>
                             }
 
