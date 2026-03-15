@@ -42,6 +42,36 @@ export type features = {
 
 }
 
+export type Family = {
+    id: number
+    name: string
+}
+
+export type FamilyFormData = {
+    name: string
+}
+
+export type PaginatedFamilies = {
+    current_page: number
+    data: Family[]
+    first_page_url: string
+    from: number
+    last_page: number
+    last_page_url: string
+    links: {
+        url: string | null
+        label: string
+        page: string | null
+        active: boolean
+    }[]
+    next_page_url: string
+    path: string
+    per_page: number
+    to: number
+    total: number
+
+}
+
 
 
 

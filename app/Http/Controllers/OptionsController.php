@@ -24,6 +24,7 @@ class OptionsController extends Controller
         return Inertia::render('options/index',[
             'options' => $options
         ]);
+        
     }
 
     public function store(Request $request){

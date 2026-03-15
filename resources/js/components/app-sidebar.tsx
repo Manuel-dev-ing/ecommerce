@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, Package, Settings } from 'lucide-react';
+import { LayoutGrid, Package, PackageOpen, Settings } from 'lucide-react';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -12,6 +12,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import families from '@/routes/families/index';
 import options from '@/routes/options/index';
 import products from '@/routes/products/index';
 
@@ -25,14 +26,19 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Options',
-        href: options.index.url(),
-        icon: Settings,
-    },
-    {
         title: 'Products',
         href: products.index.url(),
         icon: Package,
+    },
+    {
+        title: 'Families',
+        href: families.index.url(),
+        icon: PackageOpen,
+    },
+    {
+        title: 'Options',
+        href: options.index.url(),
+        icon: Settings,
     },
 ];
 

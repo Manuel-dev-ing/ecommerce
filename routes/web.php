@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\ProductsController;
@@ -29,5 +30,12 @@ Route::put('/options/{id}', [OptionsController::class, 'update'])->name('options
 Route::post('/features', [FeatureController::class, 'store'])->name("features.store");
 Route::delete('/features/{id}', [FeatureController::class, 'destroy'])->name("features.destroy");
 Route::put('/features/{id}', [FeatureController::class, 'update'])->name("features.update");
+
+//Families
+Route::get('/families', [FamilyController::class, 'index'])->name('families.index');
+Route::post('/families', [FamilyController::class, 'store'])->name('families.store');
+Route::delete('/families/{id}', [FamilyController::class, 'destroy'])->name('families.destroy');
+Route::put('/families/{id}', [FamilyController::class, 'update'])->name('families.update');
+
 
 require __DIR__.'/settings.php';

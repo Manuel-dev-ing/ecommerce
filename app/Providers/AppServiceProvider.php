@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\FamilieRepository;
+use App\Repositories\Interfaces\FamilieRepositoryInterface;
 use App\Repositories\Interfaces\OptionsRepositoryInterface;
 use App\Repositories\OptionsRepository;
 use Carbon\CarbonImmutable;
@@ -21,8 +23,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             OptionsRepositoryInterface::class,
             OptionsRepository::class
+        );
+
+        $this->app->bind(
+            FamilieRepositoryInterface::class,
+            FamilieRepository::class
 
         );
+
 
     }
 
