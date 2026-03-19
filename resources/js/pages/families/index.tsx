@@ -33,6 +33,7 @@ export default function Index() {
     const [activeId, setActiveId] = useState<number>(0)
 
     const { families, flash } = usePage<FamiliesIndexProps>().props;
+
     const { handleSubmit, register, reset, setValue, formState: {errors} } = useForm({defaultValues: initialFormData})
     
 
@@ -146,19 +147,19 @@ export default function Index() {
                                 
                                     <td className="px-6 py-4 flex gap-2">
                                         <button 
+                                        className="py-2 px-2.5 rounded-md hover:bg-[#d7dee9] hover:cursor-pointer"
+                                        onClick={() => handleEdit(item)}
+                                        >
+
+                                            <Pencil color="#131921" size={17} />
+                                        </button>
+                                        <button 
                                             className="py-2 px-2.5 rounded-md hover:bg-[#d7dee9] hover:cursor-pointer"
-                                            onClick={() => handleEdit(item)}
+                                            onClick={() => handleDelete(item.id)}
                                             >
 
-                                                <Pencil color="#131921" size={17} />
-                                            </button>
-                                            <button 
-                                                className="py-2 px-2.5 rounded-md hover:bg-[#d7dee9] hover:cursor-pointer"
-                                                onClick={() => handleDelete(item.id)}
-                                                >
-
-                                                <Trash2 color="#dd3d45" size={17} />
-                                            </button>
+                                            <Trash2 color="#dd3d45" size={17} />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -166,7 +167,7 @@ export default function Index() {
                         </tbody>
                     </table>
                     <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                    <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing 
+                        <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing 
                             <span className="font-semibold text-gray-600 ml-1">{families?.from}-{families?.to}</span> of <span className="font-semibold text-gray-600 ">
                                 {families?.total}
                             </span>
@@ -207,7 +208,7 @@ export default function Index() {
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent>
-                <DialogHeader>
+                    <DialogHeader>
                         <DialogTitle>
                             {activeId ? "Editar Familia" : "Nueva Familia"}
                         </DialogTitle>         

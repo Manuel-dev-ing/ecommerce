@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, Package, PackageOpen, Settings } from 'lucide-react';
+import { LayoutGrid, Package, PackageOpen, Settings, Tag } from 'lucide-react';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -18,6 +18,7 @@ import products from '@/routes/products/index';
 
 import type { NavItem } from '@/types';
 import AppLogo from './app-logo';
+import categories from '@/routes/categories';
 
 const mainNavItems: NavItem[] = [
     {
@@ -40,6 +41,13 @@ const mainNavItems: NavItem[] = [
         href: options.index.url(),
         icon: Settings,
     },
+    {
+        title: 'Categories',
+        href: categories.index.url(),
+        icon: Tag,
+    },
+
+
 ];
 
 export function AppSidebar() {

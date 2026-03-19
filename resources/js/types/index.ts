@@ -72,6 +72,38 @@ export type PaginatedFamilies = {
 
 }
 
+export type Category = {
+    id: number
+    name: string
+    family_id: number
+    family: Family
+    created_at: string
+    updated_at: string
+}
 
+export type CategoryFormData = {
+    name: string
+    family_id: number | string
+}
 
+export type PaginatedCategory = {
+    current_page: number
+    data: Category[]
+    first_page_url: string
+    from: number
+    last_page: number
+    last_page_url: string
+    links: {
+        url: string | null
+        label: string
+        page: string | null
+        active: boolean
+    }[]
+    next_page_url: string
+    path: string
+    per_page: number
+    to: number
+    total: number
+
+}
 

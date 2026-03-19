@@ -14,6 +14,13 @@ class FamilieRepository implements FamilieRepositoryInterface
         return Family::orderBy('id', 'desc')->paginate(10);
     }
 
+    public function getAllFamilies(){
+
+        return Family::all();
+    }
+
+
+
     
 }
 

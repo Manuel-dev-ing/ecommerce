@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\CategoryRepository;
 use App\Repositories\FamilieRepository;
+use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\FamilieRepositoryInterface;
 use App\Repositories\Interfaces\OptionsRepositoryInterface;
 use App\Repositories\OptionsRepository;
@@ -31,6 +33,12 @@ class AppServiceProvider extends ServiceProvider
 
         );
 
+
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryRepository::class
+
+        );
 
     }
 

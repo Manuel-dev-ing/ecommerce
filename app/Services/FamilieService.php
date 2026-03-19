@@ -20,6 +20,11 @@ class FamilieService
     }
 
 
+    public function getAllFamilies(){
+        return $this->IRepositoryFamilie->getAllFamilies();
+    }
+
+
 
 
 }
