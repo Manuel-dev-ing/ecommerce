@@ -107,3 +107,44 @@ export type PaginatedCategory = {
 
 }
 
+export type Subcategory = {
+    category: Category
+    category_id: number
+    created_at: string
+    id: number
+    name: string
+    updated_at: string
+
+}
+
+export type SubcategoryFormData = {
+    name: string
+    category_id: number | string
+    
+}
+
+export type PaginatedSubcategory = {
+    current_page: number
+    data: Subcategory[]
+    first_page_url: string
+    from: number
+    last_page: number
+    last_page_url: string
+    links: {
+        url: string | null
+        label: string
+        page: string | null
+        active: boolean
+    }[]
+    next_page_url: string
+    path: string
+    per_page: number
+    to: number
+    total: number
+
+}
+
+
+
+
+

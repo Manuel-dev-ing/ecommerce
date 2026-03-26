@@ -21,6 +21,13 @@ class CategoryService
     }
 
 
+    public function getAllCategories(){
+
+        $categories_all = $this->IcategoryRepositoryInterface->getAllCategories();
+
+        return $categories_all;
+    }
+
 
 }
 

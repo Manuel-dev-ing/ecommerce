@@ -5,6 +5,7 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -44,6 +45,11 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 
+//SubCategories
+Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('subcategories.index');
+Route::post('/subcategories', [SubCategoryController::class, 'store'])->name('subcategories.store');
+Route::delete('/subcategories/{id}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
+Route::put('/subcategories/{id}', [SubCategoryController::class, 'update'])->name('subcategories.update');
 
 
 require __DIR__.'/settings.php';

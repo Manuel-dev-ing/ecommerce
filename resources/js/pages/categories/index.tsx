@@ -122,20 +122,21 @@ export default function Index() {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
-                <th scope="col" className="px-6 py-3">
-                    
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Family
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Action
-                </th>
-              </tr>
+              <th scope="col" className="px-6 py-3">
+                  
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Family
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Action
+              </th>
+            </tr>
           </thead>
+
           <tbody>
             {categories?.data.map((item, index) => (
 
@@ -172,6 +173,7 @@ export default function Index() {
 
           </tbody>
         </table>
+
         <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
           <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing 
             <span className="font-semibold text-gray-600 ml-1">

@@ -15,6 +15,10 @@ class CategoryRepository implements CategoryRepositoryInterface
                 ->paginate(10);
     }
 
+    public function getAllCategories(){
+        return Category::all();
+    }
+
 
 }
 
