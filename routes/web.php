@@ -20,7 +20,15 @@ Route::get('dashboard', function () {
     return Inertia::render('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//Products
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductsController::class, 'store'])->name('products.store');
+
+Route::get('/products/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit');
+Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('products.destroy');
+Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
+
 
 // Options
 Route::get('/options', [OptionsController::class, 'index'])->name('options.index');
@@ -50,6 +58,9 @@ Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('sub
 Route::post('/subcategories', [SubCategoryController::class, 'store'])->name('subcategories.store');
 Route::delete('/subcategories/{id}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
 Route::put('/subcategories/{id}', [SubCategoryController::class, 'update'])->name('subcategories.update');
+
+
+
 
 
 require __DIR__.'/settings.php';

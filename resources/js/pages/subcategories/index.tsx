@@ -70,6 +70,7 @@ export default function Index() {
 
         }else{
             const result = subCategoriesList.filter(x => x.category_id === Number(valor)) 
+            
             if (result.length !== 0 ) {
                 setSubCategoriesList(result)
 

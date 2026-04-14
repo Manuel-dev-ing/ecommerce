@@ -7,6 +7,8 @@ interface SubcategoryRepositoryInterface
     
     public function getSubcategories();
 
+    public function getAllSubcategories();
+
 }
 
 

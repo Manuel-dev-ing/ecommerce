@@ -16,6 +16,12 @@ class SubcategoryRepository implements SubcategoryRepositoryInterface
             ->paginate(10);
     }
 
+    public function getAllSubcategories(){
+
+        return Subcategory::all();
+    }
+
+  
 
 }
 

@@ -145,6 +145,59 @@ export type PaginatedSubcategory = {
 }
 
 
+export type Product = {
+    id: number
+    sku: string
+    name: string
+    description: string
+    image_path: string | File | null
+    price: number
+    subcategory_id: number
+    subcategory: Subcategory
+    created_at: string
+    updated_at: string
+    status: boolean | number
+}
 
+export type PaginatedProduct = {
+    current_page: number
+    data: Product[]
+    first_page_url: string
+    from: number
+    last_page: number
+    last_page_url: string
+    links: {
+        url: string | null
+        label: string
+        page: string | null
+        active: boolean
+    }[]
+    next_page_url: string
+    path: string
+    per_page: number
+    to: number
+    total: number
+}
+
+
+export type ProductFormData = { 
+    sku: string
+    name: string
+    description: string
+    image_path: File | null
+    price: number | string
+    subcategory_id: number
+    status: boolean
+}
+
+
+// export type SubcategoryCategoriesFamilies = {
+//     category: Category
+//     category_id: number
+//     created_at: string
+//     id: number
+//     name: string
+//     updated_at: string
+// }
 
 

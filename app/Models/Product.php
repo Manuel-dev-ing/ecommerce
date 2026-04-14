@@ -16,8 +16,8 @@ class Product extends Model
         'description',
         'image_path',
         'price',
-        'stock',
-        'subcategory_id'
+        'subcategory_id',
+        'status'
     ];
 
     //un producto le pertenece a una subcategoria

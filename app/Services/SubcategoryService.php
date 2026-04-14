@@ -18,6 +18,10 @@ class SubcategoryService
         return $this->subcategoryRepositoryInterface->getSubcategories();
     }
 
+    public function getAllSubcategories(){
+
+        return $this->subcategoryRepositoryInterface->getAllSubcategories();
+    }
 
 }
 

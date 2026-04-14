@@ -7,8 +7,10 @@ use App\Repositories\FamilieRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\FamilieRepositoryInterface;
 use App\Repositories\Interfaces\OptionsRepositoryInterface;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\SubcategoryRepositoryInterface;
 use App\Repositories\OptionsRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\SubcategoryRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
@@ -35,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
 
         );
 
-
         $this->app->bind(
             CategoryRepositoryInterface::class,
             CategoryRepository::class
@@ -45,6 +46,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             SubcategoryRepositoryInterface::class,
             SubcategoryRepository::class
+
+        );
+
+        $this->app->bind(
+            ProductRepositoryInterface::class,
+            ProductRepository::class
 
         );
 
