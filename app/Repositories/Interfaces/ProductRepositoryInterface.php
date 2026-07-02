@@ -7,6 +7,8 @@ interface ProductRepositoryInterface
     
     public function getProducts();
 
+    public function getAllProducts();
+
 }
 
 

@@ -190,6 +190,27 @@ export type ProductFormData = {
     status: boolean
 }
 
+export type OptionObj = {
+    option_id: number;
+    value: string;
+    description: string;
+}
+
+export type VariantFormData = {
+    id: string
+    options: OptionObj[]
+    sku: string;
+    precio: number;
+    stock: number;
+}
+    // options: {
+    //     option_id: number;
+    //     value: string;
+    //     description: string;
+    // }[];
+    // sku: string;
+    // precio: number;
+    // stock: number;
 
 // export type SubcategoryCategoriesFamilies = {
 //     category: Category

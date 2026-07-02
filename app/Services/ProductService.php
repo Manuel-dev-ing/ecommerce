@@ -19,6 +19,12 @@ class ProductService
         return $this->ProductsRepositoryInterface->getProducts();
     }
 
+
+    public function getAllProducts(){
+
+
+        return $this->ProductsRepositoryInterface->getAllProducts();
+    }
     
 
 

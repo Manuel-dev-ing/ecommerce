@@ -6,6 +6,7 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\VariantsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -60,6 +61,9 @@ Route::delete('/subcategories/{id}', [SubCategoryController::class, 'destroy'])-
 Route::put('/subcategories/{id}', [SubCategoryController::class, 'update'])->name('subcategories.update');
 
 
+// Variants
+Route::get('/variants', [VariantsController::class, 'index'])->name('variants.index');
+Route::post('/variants', [VariantsController::class, 'store'])->name('variants.store');
 
 
 

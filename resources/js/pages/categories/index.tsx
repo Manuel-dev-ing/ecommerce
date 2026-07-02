@@ -142,7 +142,7 @@ export default function Index() {
 
               <tr key={index} className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                 <td className='px-6 py-4 text-gray-900 whitespace-nowrap'>
-                    {item.id}
+                  {item.id}
                 </td>
                 <td className='px-6 py-4 text-gray-900 whitespace-nowrap'>
                   {item.name}
