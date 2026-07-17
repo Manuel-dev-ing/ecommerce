@@ -64,7 +64,7 @@ Route::put('/subcategories/{id}', [SubCategoryController::class, 'update'])->nam
 // Variants
 Route::get('/variants', [VariantsController::class, 'index'])->name('variants.index');
 Route::post('/variants', [VariantsController::class, 'store'])->name('variants.store');
-
+Route::post('/variants/save', [VariantsController::class, 'save'])->name('variants.save');
 
 
 require __DIR__.'/settings.php';

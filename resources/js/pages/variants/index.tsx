@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react'
+import { Head, router, usePage } from '@inertiajs/react'
 import { Layers, Pencil, Plus, Shuffle, Trash2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -8,9 +8,10 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Toast from '@/components/ui/toast'
 import AppLayout from '@/layouts/app-layout'
 import type { BreadcrumbItem, features, Option, OptionObj, Product, VariantFormData } from '@/types'
-import { data } from './data'
+
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -36,6 +37,8 @@ const initialData: VariantFormData = {
 }
 
 export default function Index() {
+    const [selected, setSelected] = useState<boolean>(false)
+    const [vissible, setVissible] = useState<boolean>(false)
     const [activeId, setActiveId] = useState<string>('')
     const [selectedOptions, setSelectedOptions] = useState<OptionObj[]>([])
     const [open, setOpen] = useState<boolean>(false)
@@ -43,30 +46,34 @@ export default function Index() {
     const [atributes, setAtributes] = useState<features[]>([])
     const [tempAtributes, setTempAtributes] = useState<features[]>([])
     const [variants, setVariants] = useState<VariantFormData[]>([])
-
     const { products, options } = usePage<VariantsIndexProps>().props
     const [product, setProduct] = useState<Product>({
     
     } as Product )
 
+
     const { register, handleSubmit, formState: { errors }, setValue, reset } = 
     useForm({defaultValues: initialData})
 
-    const agrupado = Object.groupBy(atributes, (item) => item.option_id)
-   
-    console.log(variants);
-    // console.log(atributes);
-    
+    let agrupado = Object.groupBy(atributes, (item) => item.option_id)
 
     useEffect(() => {
         if (variants.length > 0) {
             console.log("mostrando variantes");
             console.log(variants);
-            console.log("guardar");
+            console.log("guardando variants...");
             
+            router.post('/variants', variants, {
+                onSuccess: () => {
+                    console.log("variants guardado...");
+                    setVissible(true)
+                }
+            })
+
+
         }
 
-        
+
     }, [variants])
 
     const handleSelectProduct = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -107,15 +114,11 @@ export default function Index() {
         const arr : string[] = []
         const result = variants.find(x => x.id === id)
 
-        console.log(result?.options);
-
         result?.options.forEach(x => {
             arr.push(x.description)
-            // arr.push("/")
         })
         
         const option = arr.join(" / ")
-        // console.log(arr.join("/"));
         return option
         
     }
@@ -178,7 +181,6 @@ export default function Index() {
         let arr : OptionObj[] = []
         const arr_variants: OptionObj[][] = []
         const arr_variants_result: OptionObj[][] = [] 
-        // const arr_temp = []
 
         for (let index = 1; index < arr_result.length; index++) {
             const option_id = arr_result[index];
@@ -189,9 +191,9 @@ export default function Index() {
                     arr_atributes?.forEach(element => {
                         arr.push(element)
                     });
+
                     arr_variants_result.push(arr)
-                    
-                    
+
                 }                
 
                 for (let l = 0; l < arr_variants.length; l++) {
@@ -203,9 +205,9 @@ export default function Index() {
                         for (let i = 0; i < arr_atributes!.length; i++) {
                             const element_last = arr_atributes![i];
                             
-                            arr.push({option_id: element.option_id, value: element.value, description: element.description})
+                            arr.push({option_id: element.option_id, feature_id: element.feature_id, value: element.value, description: element.description})
 
-                            arr.push({option_id: element_last.option_id, value: element_last.value, description: element_last.description})
+                            arr.push({option_id: element_last.option_id, feature_id: element_last.id, value: element_last.value, description: element_last.description})
 
                             arr_variants_result.push(arr)
 
@@ -222,7 +224,7 @@ export default function Index() {
                 for (let j = 0; j < arr_atributes!.length; j++) {
                     const element = arr_atributes![j];
                     
-                    arr.push({option_id: element.option_id, value: element.value, description: element.description})
+                    arr.push({option_id: element.option_id, feature_id: element.id, value: element.value, description: element.description})
                         
                     arr_variants.push(arr)
                     arr = []
@@ -238,22 +240,9 @@ export default function Index() {
 
     const handleGenerarAtributos = () => {
 
-        console.log("Generando atributos...");
-        console.log(agrupado);
-      
         const arr_result = Object.keys(agrupado)
-        // let arr_element: OptionObj[] = []
-        // console.log(arr_result);
-        
 
         const result = getAttributes(arr_result, agrupado)
-        console.log(result);
-        // for (let i = 0; i < result.length; i++) {
-            
-        //     console.log(result[i]);
-            
-        // }
-        
 
         for (let index = 0; index < arr_result[0].length; index++) {
 
@@ -270,12 +259,12 @@ export default function Index() {
                     result[0].forEach(item => {
                         const copy_temp_arr = [...temp_arr] 
 
-                        copy_temp_arr.push({option_id: element.option_id, value:element.value, 
+                        copy_temp_arr.push({option_id: element.option_id, feature_id: element.id, value:element.value, 
                         description:element.description})
-                        copy_temp_arr.push({option_id: item.option_id, value:item.value, 
+                        copy_temp_arr.push({option_id: item.option_id, feature_id: item.feature_id, value:item.value, 
                         description:item.description})
                         // crear una copia del array
-                        const obj = {id: getId(), options: copy_temp_arr, sku: 'sku-'+getNumberRandom(), precio: 10.36, stock: 5}
+                        const obj = {id: getId(), id_producto: product.id, options: copy_temp_arr, sku: 'sku-'+getNumberRandom(), precio: 10.36, stock: 5}
 
                         setVariants(x => [...x, obj])   
                         
@@ -291,12 +280,12 @@ export default function Index() {
                         const copy_arr = [...result[j]];
                         // console.log(copy_arr);
                         
-                        copy_arr.push({option_id: element.option_id, value:element.value, 
+                        copy_arr.push({option_id: element.option_id, feature_id: element.id, value:element.value, 
                             description:element.description})
                         
                         // arr_element.push(element)
                         
-                        const obj = {id: getId(), options: copy_arr, sku: 'sku-'+getNumberRandom(), precio: 10.36, stock: 5}
+                        const obj = {id: getId(), id_producto: product.id, options: copy_arr, sku: 'sku-'+getNumberRandom(), precio: 10.36, stock: 5}
     
                         // console.log(obj);
                         setVariants(x => [...x, obj])                       
@@ -310,8 +299,6 @@ export default function Index() {
 
         }
 
-        
-
     }
 
     const handleFormSubmit = (data : VariantFormData) => {
@@ -321,7 +308,7 @@ export default function Index() {
             
             if (x.id === data.id) {
                 
-                return { id: x.id, options: x.options, sku: data.sku, precio: Number(data.precio), stock: Number(data.stock)}
+                return { id: x.id, id_producto: x.id_producto, options: x.options, sku: data.sku, precio: Number(data.precio), stock: Number(data.stock)}
             }
 
             return x
@@ -330,11 +317,30 @@ export default function Index() {
         closeVariantModal()
     }
     
+    const handleSaveVariants = () => {
+
+        router.post('/variants/save', variants, {
+            onSuccess: () => {
+                setSelected(true)
+                agrupado = {}
+                setVariants([])
+                setProduct({} as Product)
+                setAtributes([])
+                alert("variants guardado")
+
+            }
+        })
+
+    }
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title='Variants' />
             <main className='flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4'>
+                {vissible && (
+                    <Toast description='Variantes creadas correctamente' />
+                )}
+               
                 <div className='flex items-center justify-between'>
                     <div>
                         <p className='font-semibold text-2xl'>Variantes de Producto</p>
@@ -350,7 +356,7 @@ export default function Index() {
                         <label htmlFor="product">Seleccionar producto</label>
                         <select id="product" className='bg-white rounded-md px-3 py-2.5 border border-gray-300 w-full focus:border-[#30507c] focus:shadow-[#d4dbe4] focus:border-2 focus:shadow-md text-sm'
                         onChange={handleSelectProduct}>
-                            <option value="">
+                            <option selected={selected}>
                                 Elige un producto para gestionar variantes
                             </option>
                             {products?.map((item, index) => (
@@ -447,14 +453,26 @@ export default function Index() {
 
 
                         <section className='bg-white p-5 '>
-                            <div>
+                            <div className='flex justify-between items-center border border-black border-2'>
+                                <div>
 
-                                <p className='font-semibold text-md'>
-                                    Variantes <span>({variants.length})</span>
-                                </p>
-                                <span className='text-gray-500'>
-                                    Cada variante tiene su propio SKU, precio y stock
-                                </span>
+                                    <p className='font-semibold text-md'>
+                                        Variantes <span>({variants.length})</span>
+                                    </p>
+                                    <span className='text-gray-500'>
+                                        Cada variante tiene su propio SKU, precio y stock
+                                    </span>
+                                </div>
+                                {variants.length > 0 ? (
+
+                                    <button type="button" className={`py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded border border-gray-400 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer`} 
+                                    onClick={() => handleSaveVariants()}>
+                                        
+                                        Guardar variantes
+                                    </button>
+
+                                ): <></> }
+
                             </div>
 
 

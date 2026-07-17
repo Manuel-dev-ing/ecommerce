@@ -192,13 +192,15 @@ export type ProductFormData = {
 
 export type OptionObj = {
     option_id: number;
+    feature_id: number;
     value: string;
     description: string;
 }
 
 export type VariantFormData = {
-    id: string
-    options: OptionObj[]
+    id: string;
+    id_producto: number;
+    options: OptionObj[];
     sku: string;
     precio: number;
     stock: number;
