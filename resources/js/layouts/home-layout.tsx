@@ -2,9 +2,6 @@ import { useState, type ReactNode } from "react";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
-import SectionPayments from "@/components/section-payments";
-
-
 type HomeLayoutProps = {
     children: ReactNode
 }
@@ -32,9 +29,6 @@ export default function HomeLayout({children}:HomeLayoutProps) {
             {children}
 
         </main>
-
-        {/* payments */}
-        <SectionPayments />
 
         {/* footer */}
         <Footer />

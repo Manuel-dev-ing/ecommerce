@@ -3,6 +3,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import SectionBestsellers from "@/components/section-bestsellers"
 import Categories from "@/components/section-categories"
 import SectionOffers from "@/components/section-offers"
+import SectionPayments from '@/components/section-payments';
 
 import buyprotected from '@/images/buyprotected.svg'
 
@@ -162,6 +163,8 @@ export default function Welcome({
 
                 </div>
 
+                {/* payments */}
+                <SectionPayments />
 
             </HomeLayout>
         </>
