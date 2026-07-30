@@ -44,6 +44,15 @@ class ProductsController extends Controller
 
     }
 
+    public function show($id){
+
+        return Inertia::render('products/show',[
+
+        ]);
+
+    }
+
+
     public function create(){
 
         $families = $this->familieService->getAllFamilies();
