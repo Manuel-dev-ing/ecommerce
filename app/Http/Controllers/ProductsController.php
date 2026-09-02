@@ -82,7 +82,7 @@ class ProductsController extends Controller
 
         }else{
 
-            $path = $request->file('image_path')->store('products', 'public');
+            $path = $request->file('image_path')->store('covers', 'public');
         
         }
 

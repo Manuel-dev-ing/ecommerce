@@ -205,6 +205,12 @@ export type VariantFormData = {
     precio: number;
     stock: number;
 }
+
+export type Cover = {
+    id: string
+    image_path: string
+}
+
     // options: {
     //     option_id: number;
     //     value: string;

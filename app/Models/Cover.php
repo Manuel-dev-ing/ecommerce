@@ -10,16 +10,12 @@ class Cover extends Model
     use HasFactory;
 
     protected $fillable = [
-        'image_path',
         'title',
-        'start_at',
-        'end_at',
+        'image_path',
         'is_active',
     ];
 
     protected $casts = [
-        'start_at' => 'datetime',
-        'end_at' => 'datetime',
         'is_active' => 'boolean',
     ];
     

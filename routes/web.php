@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CoverController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\OptionsController;
@@ -67,5 +68,8 @@ Route::get('/variants', [VariantsController::class, 'index'])->name('variants.in
 Route::post('/variants', [VariantsController::class, 'store'])->name('variants.store');
 Route::post('/variants/save', [VariantsController::class, 'save'])->name('variants.save');
 
+//Covers
+Route::get('/covers', [CoverController::class, 'index'])->name('covers.index');
+Route::post('/covers', [CoverController::class, 'store'])->name('covers.store');
 
 require __DIR__.'/settings.php';

@@ -48,12 +48,21 @@ export default function Create() {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.files);
+    /*
+      Flujo de ejecución
+      1. Ejecutas readAsDataURL.
+      2. El navegador lee el archivo en segundo plano sin congelar la pantalla.
+      3. Al terminar, el navegador activa automáticamente la función onloadend.
+      4. Tu aplicación recibe el texto en Base64 y actualiza la interfaz.
     
+    */  
+
+
     const file = event.target.files?.[0];
     if (file) {
       setSelectedImage(file);
-      // Crear URL para previsualización
       const reader = new FileReader();
+      
       reader.onloadend = () => {
         setPreviewUrl(reader.result as string);
       };
@@ -98,13 +107,13 @@ export default function Create() {
         
         <main className='flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4'>
           <div className='flex items-center justify-between'>
-              <div>
-                  <p className='font-semibold text-2xl'>Nuevo Productos</p>
-                  <p className='text-gray-600'>
-                      Completa la información para agregar un producto al catálogo.
-                  </p>
+            <div>
+                <p className='font-semibold text-2xl'>Nuevo Productos</p>
+                <p className='text-gray-600'>
+                    Completa la información para agregar un producto al catálogo.
+                </p>
 
-              </div>
+            </div>
 
           </div>
           <form onSubmit={handleSubmit(handleFormSubmit)}>

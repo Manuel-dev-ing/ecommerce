@@ -40,6 +40,10 @@ class Product extends Model
                     ->withTimestamps();
 
     }
+    
+    public function covers(){
 
+        return $this->hasMany(Cover::class);
+    }
 
 }

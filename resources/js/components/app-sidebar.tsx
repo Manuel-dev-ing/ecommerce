@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { Layers, LayoutGrid, Package, PackageOpen, Settings, Tag, Tags } from 'lucide-react';
+import { Images, Layers, LayoutGrid, Package, PackageOpen, Settings, Tag, Tags } from 'lucide-react';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -13,14 +13,15 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import categories from '@/routes/categories';
+import covers from '@/routes/covers/index';
 import families from '@/routes/families/index';
 import options from '@/routes/options/index';
 import products from '@/routes/products/index';
 import subcategories from '@/routes/subcategories/index';
+import variants from '@/routes/variants';
 
 import type { NavItem } from '@/types';
 import AppLogo from './app-logo';
-import variants from '@/routes/variants';
 
 const mainNavItems: NavItem[] = [
     {
@@ -57,6 +58,11 @@ const mainNavItems: NavItem[] = [
         title: 'Variants',
         href: variants.index.url(),
         icon: Layers
+    },
+    {
+        title: 'Covers',
+        href: covers.index.url(),
+        icon: Images
     }
 
 
